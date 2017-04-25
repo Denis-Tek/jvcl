@@ -774,9 +774,11 @@ end;
 { function InputQuery(const ACaption, APrompt: string; var Value: string): Boolean; }
 
 procedure JvInterpreter_InputQuery(var Value: Variant; Args: TJvInterpreterArgs);
-
+var S: String;
 begin
-  Value := InputQuery(Args.Values[0], Args.Values[1], string(TVarData(Args.Values[2]).vString));
+  S := Args.Values[2];
+  Value := InputQuery(Args.Values[0], Args.Values[1], S);
+  Args.Values[2] := S;
 end;
 
 procedure RegisterJvInterpreterAdapter(JvInterpreterAdapter: TJvInterpreterAdapter);
